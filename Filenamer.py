@@ -67,10 +67,13 @@ for Path in PathFile:
 # N - entity Query Object
 
 #  Создаем новый блок c именем "Nazvanie"
+#  Если такой блок уже есть, файл дальше не обрабатывается.
 #  Объект Z создается в точке с координатами (0,0,0),
 #  поэтому базовая точка блока также нулевая
-
-    BLOCK = doc.blocks.new(name='Nazvanie', base_point=(0, 0))
+    if 'Nazvanie' not in doc.blocks:
+        BLOCK = doc.blocks.new(name='Nazvanie', base_point=(0, 0))
+    else:
+        continue
 
 
 #  При перемещении в блок объекты удаляются с чертежа.
